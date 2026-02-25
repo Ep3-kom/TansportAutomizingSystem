@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './hooks/useAuth.jsx'
 import Sidebar from './components/layout/Sidebar'
 import TopBar from './components/layout/TopBar'
 import Dashboard from './pages/Dashboard'
@@ -8,8 +9,10 @@ import Planning from './pages/Planning'
 import Maintenance from './pages/Maintenance'
 import Clients from './pages/Clients'
 import Settings from './pages/Settings'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
-function App() {
+function AppLayout() {
   return (
     <div className="flex h-screen bg-surface">
       <Sidebar />
@@ -28,6 +31,29 @@ function App() {
         </main>
       </div>
     </div>
+  )
+}
+
+function App() {
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-surface flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-10 h-10 border-3 border-primary-200 border-t-primary-500 rounded-full animate-spin mx-auto"></div>
+          <p className="text-sm text-gray-500 mt-3">Laden...</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <Routes>
+      <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+      <Route path="/registreren" element={user ? <Navigate to="/" /> : <Register />} />
+      <Route path="/*" element={user ? <AppLayout /> : <Navigate to="/login" />} />
+    </Routes>
   )
 }
 
