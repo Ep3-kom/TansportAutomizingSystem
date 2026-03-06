@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 
-export default function ScheduleForm({ schedule, drivers, onSubmit, onCancel, loading }) {
+export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit, onCancel, loading }) {
   const [formData, setFormData] = useState({
     driver_id: '',
+    client_id: '',
     start_time: '08:00',
     end_time: '17:00',
     notes: '',
@@ -12,6 +13,7 @@ export default function ScheduleForm({ schedule, drivers, onSubmit, onCancel, lo
     if (schedule) {
       setFormData({
         driver_id: schedule.driver_id || '',
+        client_id: schedule.client_id || '',
         start_time: schedule.start_time || '08:00',
         end_time: schedule.end_time || '17:00',
         notes: schedule.notes || '',
@@ -25,7 +27,7 @@ export default function ScheduleForm({ schedule, drivers, onSubmit, onCancel, lo
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit(formData)
+    onSubmit({ ...formData, client_id: formData.client_id || null })
   }
 
   // Filter alleen actieve chauffeurs
@@ -45,6 +47,21 @@ export default function ScheduleForm({ schedule, drivers, onSubmit, onCancel, lo
           <option value="">Selecteer chauffeur...</option>
           {activeDrivers.map(driver => (
             <option key={driver.id} value={driver.id}>{driver.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1.5">Klant</label>
+        <select
+          name="client_id"
+          value={formData.client_id}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+        >
+          <option value="">Geen klant gekoppeld</option>
+          {clients.map(client => (
+            <option key={client.id} value={client.id}>{client.name}</option>
           ))}
         </select>
       </div>

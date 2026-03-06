@@ -17,7 +17,7 @@ export function useSchedules(weekStart) {
 
     const { data, error } = await supabase
       .from('schedules')
-      .select('*, drivers(name, status)')
+      .select('*, drivers(name, status), clients(name)')
       .gte('date', weekStart.toISOString().split('T')[0])
       .lte('date', weekEnd.toISOString().split('T')[0])
       .order('start_time')
@@ -30,7 +30,7 @@ export function useSchedules(weekStart) {
     const { data, error } = await supabase
       .from('schedules')
       .insert([{ ...schedule, company_id: profile?.company_id }])
-      .select('*, drivers(name, status)')
+      .select('*, drivers(name, status), clients(name)')
       .single()
     if (!error) setSchedules(prev => [...prev, data])
     return { data, error }
@@ -41,7 +41,7 @@ export function useSchedules(weekStart) {
       .from('schedules')
       .update(updates)
       .eq('id', id)
-      .select('*, drivers(name, status)')
+      .select('*, drivers(name, status), clients(name)')
       .single()
     if (!error) setSchedules(prev => prev.map(s => s.id === id ? data : s))
     return { data, error }

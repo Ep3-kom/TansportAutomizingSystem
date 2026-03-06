@@ -48,7 +48,6 @@ Druk op `Ctrl + C` in de terminal.
 
 ```bash
 cd TansportAutomizingSystem/frontend
-npm install
 npm run dev
 ```
 

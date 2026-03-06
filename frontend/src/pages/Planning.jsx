@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { CalendarDays, ChevronLeft, ChevronRight, Plus, GripVertical, Clock, Pencil, Trash2, StickyNote, X } from 'lucide-react'
 import { useSchedules } from '../hooks/useSchedules'
 import { useDrivers } from '../hooks/useDrivers'
+import { useClients } from '../hooks/useClients'
 import Modal from '../components/ui/Modal'
 import ConfirmDialog from '../components/ui/ConfirmDialog'
 import ScheduleForm from '../components/planning/ScheduleForm'
@@ -51,6 +52,7 @@ export default function Planning() {
   const [weekStart, setWeekStart] = useState(() => getMonday(new Date()))
   const { schedules, loading, addSchedule, updateSchedule, deleteSchedule, moveSchedule } = useSchedules(weekStart)
   const { drivers } = useDrivers()
+  const { clients } = useClients()
 
   const [modalOpen, setModalOpen] = useState(false)
   const [editingSchedule, setEditingSchedule] = useState(null)
@@ -351,6 +353,7 @@ export default function Planning() {
                   {daySchedules.map(schedule => {
                     const color = getDriverColor(schedule.driver_id, drivers)
                     const driverName = schedule.drivers?.name || 'Onbekend'
+                    const clientName = schedule.clients?.name
 
                     return (
                       <div
@@ -370,6 +373,9 @@ export default function Planning() {
                               {schedule.start_time?.slice(0, 5)} - {schedule.end_time?.slice(0, 5)}
                             </span>
                           </div>
+                          {clientName && (
+                            <p className="text-[11px] text-gray-500 font-medium mt-0.5 truncate">{clientName}</p>
+                          )}
                           {schedule.notes && (
                             <div className="flex items-start gap-1 mt-1">
                               <StickyNote className="w-3 h-3 text-gray-400 mt-0.5 shrink-0" />
@@ -424,6 +430,7 @@ export default function Planning() {
         <ScheduleForm
           schedule={editingSchedule}
           drivers={drivers}
+          clients={clients}
           onSubmit={handleSubmit}
           onCancel={() => { setModalOpen(false); setEditingSchedule(null); setSelectedDate(null) }}
           loading={saving}
