@@ -10,8 +10,10 @@ import {
   Building2,
 } from 'lucide-react'
 import StatCard from '../components/ui/StatCard'
+import DrivingHoursCard from '../components/drivers/DrivingHoursCard'
 import { useDrivers } from '../hooks/useDrivers'
 import { useTrucks } from '../hooks/useTrucks'
+import { useDrivingHours } from '../hooks/useDrivingHours'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth.jsx'
 
@@ -35,6 +37,7 @@ export default function Dashboard() {
   const { profile } = useAuth()
   const { drivers, loading: driversLoading } = useDrivers()
   const { trucks, loading: trucksLoading } = useTrucks()
+  const { getDriverSummary, loading: hoursLoading } = useDrivingHours()
   const [todaySchedules, setTodaySchedules] = useState([])
   const [schedulesLoading, setSchedulesLoading] = useState(true)
 
@@ -54,7 +57,7 @@ export default function Dashboard() {
     fetchToday()
   }, [profile?.company_id, today])
 
-  const loading = driversLoading || trucksLoading || schedulesLoading
+  const loading = driversLoading || trucksLoading || schedulesLoading || hoursLoading
 
   // Statistieken berekenen
   const activeDrivers = drivers.filter(d => d.status === 'actief')
@@ -190,6 +193,9 @@ export default function Dashboard() {
         </div>
 
       </div>
+
+      {/* Rij- en rusttijden */}
+      <DrivingHoursCard drivers={drivers} getDriverSummary={getDriverSummary} />
     </div>
   )
 }

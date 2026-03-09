@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import DrivingHoursWarning from './DrivingHoursWarning'
 
-export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit, onCancel, loading }) {
+export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit, onCancel, loading, checkDrivingHours }) {
   const [formData, setFormData] = useState({
     driver_id: '',
     client_id: '',
@@ -32,6 +33,13 @@ export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit
 
   // Filter alleen actieve chauffeurs
   const activeDrivers = drivers.filter(d => d.status === 'actief')
+
+  // Rij- en rusttijden check
+  const drivingCheck = checkDrivingHours && formData.driver_id && formData.start_time && formData.end_time
+    ? checkDrivingHours(formData.driver_id, formData.start_time, formData.end_time)
+    : { violations: [], warnings: [] }
+
+  const hasViolations = drivingCheck.violations.length > 0
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -103,6 +111,9 @@ export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit
         />
       </div>
 
+      {/* Rij- en rusttijden waarschuwingen */}
+      <DrivingHoursWarning violations={drivingCheck.violations} warnings={drivingCheck.warnings} />
+
       <div className="flex gap-3 pt-2 justify-end">
         <button
           type="button"
@@ -113,10 +124,14 @@ export default function ScheduleForm({ schedule, drivers, clients = [], onSubmit
         </button>
         <button
           type="submit"
-          disabled={loading}
-          className="px-4 py-2.5 text-sm font-medium text-white bg-primary-500 rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
+          disabled={loading || hasViolations}
+          className={`px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-colors disabled:opacity-50 ${
+            hasViolations
+              ? 'bg-danger-400 cursor-not-allowed'
+              : 'bg-primary-500 hover:bg-primary-600'
+          }`}
         >
-          {loading ? 'Opslaan...' : schedule ? 'Bijwerken' : 'Inplannen'}
+          {loading ? 'Opslaan...' : hasViolations ? 'Geblokkeerd' : schedule ? 'Bijwerken' : 'Inplannen'}
         </button>
       </div>
     </form>

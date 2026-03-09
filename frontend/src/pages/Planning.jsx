@@ -3,6 +3,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Plus, GripVertical, Clock, Pen
 import { useSchedules } from '../hooks/useSchedules'
 import { useDrivers } from '../hooks/useDrivers'
 import { useClients } from '../hooks/useClients'
+import { useDrivingHours } from '../hooks/useDrivingHours'
 import Modal from '../components/ui/Modal'
 import ConfirmDialog from '../components/ui/ConfirmDialog'
 import ScheduleForm from '../components/planning/ScheduleForm'
@@ -53,6 +54,7 @@ export default function Planning() {
   const { schedules, loading, addSchedule, updateSchedule, deleteSchedule, moveSchedule } = useSchedules(weekStart)
   const { drivers } = useDrivers()
   const { clients } = useClients()
+  const { checkViolations } = useDrivingHours()
 
   const [modalOpen, setModalOpen] = useState(false)
   const [editingSchedule, setEditingSchedule] = useState(null)
@@ -434,6 +436,9 @@ export default function Planning() {
           onSubmit={handleSubmit}
           onCancel={() => { setModalOpen(false); setEditingSchedule(null); setSelectedDate(null) }}
           loading={saving}
+          checkDrivingHours={(driverId, startTime, endTime) =>
+            checkViolations(driverId, selectedDate, startTime, endTime)
+          }
         />
       </Modal>
 
