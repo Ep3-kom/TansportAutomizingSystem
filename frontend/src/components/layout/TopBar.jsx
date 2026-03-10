@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Bell, Search, AlertTriangle, Clock, Shield } from 'lucide-react'
+import { Bell, Search, AlertTriangle, Clock, Shield, LogOut } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth.jsx'
 import { useNotifications } from '../../hooks/useNotifications'
 
@@ -22,7 +22,7 @@ const severityStyles = {
 
 export default function TopBar() {
   const location = useLocation()
-  const { profile } = useAuth()
+  const { profile, signOut } = useAuth()
   const { notifications, unreadCount } = useNotifications()
   const [showNotifications, setShowNotifications] = useState(false)
   const dropdownRef = useRef(null)
@@ -119,6 +119,13 @@ export default function TopBar() {
             <p className="text-sm font-medium text-gray-700 leading-tight">{userName}</p>
             {companyName && <p className="text-xs text-gray-400 leading-tight">{companyName}</p>}
           </div>
+          <button
+            onClick={signOut}
+            className="p-2 rounded-lg text-gray-400 hover:text-danger-500 hover:bg-danger-50 transition-colors"
+            title="Uitloggen"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </header>

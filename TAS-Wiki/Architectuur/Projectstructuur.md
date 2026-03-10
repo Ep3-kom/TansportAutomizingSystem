@@ -10,7 +10,8 @@ TansportAutomizingSystem/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── layout/          → Sidebar.jsx, TopBar.jsx
+│   │   │   ├── layout/          → Sidebar.jsx, TopBar.jsx (transport)
+│   │   │   ├── delivery/        → DeliveryLayout.jsx, DeliverySidebar.jsx, DeliveryTopBar.jsx
 │   │   │   ├── ui/              → Modal.jsx, ConfirmDialog.jsx, StatCard.jsx
 │   │   │   ├── drivers/         → DriverForm.jsx
 │   │   │   ├── trucks/          → TruckForm.jsx
@@ -23,22 +24,33 @@ TansportAutomizingSystem/
 │   │   │   ├── Planning.jsx      → [[Ritplanning]]
 │   │   │   ├── Clients.jsx       → [[Klantenbeheer]]
 │   │   │   ├── Maintenance.jsx   → [[Onderhoudstracker]] (placeholder)
-│   │   │   ├── Settings.jsx      → [[Settings Pagina]] (placeholder)
+│   │   │   ├── Settings.jsx      → [[Settings Pagina]]
 │   │   │   ├── Login.jsx         → [[Authenticatie]]
-│   │   │   └── Register.jsx      → [[Authenticatie]]
+│   │   │   ├── Register.jsx      → [[Authenticatie]]
+│   │   │   └── delivery/         → [[Delivery Module Overzicht]]
+│   │   │       ├── DeliveryDashboard.jsx  → [[Delivery Dashboard]]
+│   │   │       ├── Orders.jsx             → [[Bestellingen]]
+│   │   │       ├── DeliveryPlanning.jsx   → [[Bezorgplanning]]
+│   │   │       └── DeliverySettings.jsx   → [[Delivery Instellingen]]
 │   │   ├── hooks/
-│   │   │   ├── useAuth.js        → Auth state + bedrijfsprofiel
+│   │   │   ├── useAuth.jsx       → Auth state + bedrijfsprofiel
 │   │   │   ├── useDrivers.js     → CRUD chauffeurs
 │   │   │   ├── useTrucks.js      → CRUD voertuigen + RDW API
 │   │   │   ├── useSchedules.js   → CRUD planningen
-│   │   │   └── useClients.js     → CRUD klanten
+│   │   │   ├── useClients.js     → CRUD klanten
+│   │   │   ├── useOrders.js      → CRUD bezorgorders
+│   │   │   ├── useShopify.js     → Shopify API koppeling
+│   │   │   └── useDeliveryRoutes.js → Bezorgroutes + Google Maps
 │   │   ├── lib/
 │   │   │   └── supabase.js       → [[Supabase Setup]]
-│   │   ├── App.jsx               → Router + auth guard
+│   │   ├── App.jsx               → Router + auth guard + plan_type routing
 │   │   ├── main.jsx              → Entry point
 │   │   └── index.css             → Tailwind + thema
 │   ├── package.json
 │   └── vite.config.js
+├── supabase/
+│   ├── migration_delivery.sql    → [[Delivery Database Schema]]
+│   └── seed_delivery_user.sql    → Test gebruiker aanmaken
 ├── Documentatie/
 │   ├── technischeplanTAS.md
 │   └── projectplanTAS.md
@@ -50,4 +62,3 @@ TansportAutomizingSystem/
 - `src/lib/exportPdf.js` — zie [[Data Export]]
 - `src/lib/exportExcel.js` — zie [[Data Export]]
 - `src/hooks/useMaintenance.js` — zie [[Onderhoudstracker]]
-- `src/store/appStore.js` — Zustand store (niet nodig gebleken)

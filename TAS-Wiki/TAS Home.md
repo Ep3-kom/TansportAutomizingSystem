@@ -15,7 +15,7 @@
 - [[Supabase Setup]]
 - [[Deployment]]
 
-## Features
+## Features — Transport Dashboard
 
 - [[Dashboard]]
 - [[Chauffeursbeheer]]
@@ -27,6 +27,17 @@
 - [[Authenticatie]]
 - [[Settings Pagina]]
 - [[Rij- en Rusttijden]]
+- [[Logout]]
+
+## Features — Delivery Module (Bezorgbedrijven)
+
+- [[Delivery Module Overzicht]]
+- [[Delivery Dashboard]]
+- [[Bestellingen]]
+- [[Bezorgplanning]]
+- [[Shopify Koppeling]]
+- [[Delivery Instellingen]]
+- [[Delivery Database Schema]]
 
 ## Business
 

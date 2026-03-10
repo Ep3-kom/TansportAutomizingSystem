@@ -11,6 +11,7 @@ import Clients from './pages/Clients'
 import Settings from './pages/Settings'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import DeliveryLayout from './components/delivery/DeliveryLayout'
 
 function AppLayout() {
   return (
@@ -35,7 +36,7 @@ function AppLayout() {
 }
 
 function App() {
-  const { user, loading } = useAuth()
+  const { user, profile, loading } = useAuth()
 
   if (loading) {
     return (
@@ -48,11 +49,28 @@ function App() {
     )
   }
 
+  // Bepaal welk dashboard op basis van plan_type
+  const isDelivery = profile?.companies?.plan_type === 'delivery'
+  const homePath = isDelivery ? '/delivery' : '/'
+
   return (
     <Routes>
-      <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-      <Route path="/registreren" element={user ? <Navigate to="/" /> : <Register />} />
-      <Route path="/*" element={user ? <AppLayout /> : <Navigate to="/login" />} />
+      <Route path="/login" element={user ? <Navigate to={homePath} /> : <Login />} />
+      <Route path="/registreren" element={user ? <Navigate to={homePath} /> : <Register />} />
+      {user ? (
+        isDelivery ? (
+          <>
+            <Route path="/delivery/*" element={<DeliveryLayout />} />
+            <Route path="*" element={<Navigate to="/delivery" />} />
+          </>
+        ) : (
+          <>
+            <Route path="/*" element={<AppLayout />} />
+          </>
+        )
+      ) : (
+        <Route path="*" element={<Navigate to="/login" />} />
+      )}
     </Routes>
   )
 }

@@ -16,6 +16,11 @@ companies ──< schedules (via company_id)
                 schedules >── drivers (via driver_id)
                 schedules >── trucks (via truck_id)
                 schedules >── clients (via client_id)
+
+— Delivery Module (zie [[Delivery Database Schema]]) —
+companies ──< orders (via company_id)
+companies ──< integrations (via company_id)
+companies ──< delivery_routes (via company_id)
 ```
 
 > Alle tabellen hebben `company_id` als FK → dit maakt [[Row Level Security|multi-tenant isolatie]] mogelijk.
