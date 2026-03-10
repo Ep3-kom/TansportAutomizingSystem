@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "TO do list.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -182,10 +182,10 @@
   },
   "active": "d7d1a72264fe8229",
   "lastOpenFiles": [
+    "Database/Row Level Security.md",
+    "TO do list.md",
     "gebruikersnamen.md",
     "TAS Home.md",
-    "TO do list.md",
-    "Database/Row Level Security.md",
     "Database/Delivery Database Schema.md",
     "Features/Rij- en Rusttijden.md",
     "Features/Logout.md",
