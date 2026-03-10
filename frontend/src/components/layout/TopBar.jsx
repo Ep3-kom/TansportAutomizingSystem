@@ -112,9 +112,13 @@ export default function TopBar() {
 
         {/* Gebruiker avatar */}
         <div className="flex items-center gap-3 pl-3 border-l border-gray-200/60">
-          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center ring-2 ring-primary-50">
-            <span className="text-sm font-semibold text-primary-600">{userInitial}</span>
-          </div>
+          {profile?.companies?.logo_url ? (
+            <img src={profile.companies.logo_url} alt="Logo" className="w-8 h-8 rounded-full object-contain ring-2 ring-primary-50" />
+          ) : (
+            <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center ring-2 ring-primary-50">
+              <span className="text-sm font-semibold text-primary-600">{userInitial}</span>
+            </div>
+          )}
           <div className="hidden sm:block">
             <p className="text-sm font-medium text-gray-700 leading-tight">{userName}</p>
             {companyName && <p className="text-xs text-gray-400 leading-tight">{companyName}</p>}
