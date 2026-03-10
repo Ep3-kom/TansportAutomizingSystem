@@ -14,7 +14,7 @@
 
   
 
-- [ ] **Supabase RLS (Row Level Security) activeren & testen** — Zonder RLS kan een klant technisch gezien data van andere bedrijven zien. Kritiek beveiligingslek.
+- [x] **Supabase RLS (Row Level Security) activeren & testen** — Zonder RLS kan een klant technisch gezien data van andere bedrijven zien. Kritiek beveiligingslek.
 
 - [ ] **Stripe betalingsintegratie** — Geen betaling = geen SaaS. Subscription, checkout, webhook voor plan-status.
 
@@ -26,7 +26,7 @@
 
 - [ ] **Error handling & gebruiker-feedback verbeteren** — Nu worden fouten stil geslikt. Klant ziet niks als iets misgaat.
 
-- [ ] **Hardcoded "Admin" / "TAS Demo" in TopBar vervangen** — Moet echte user- en bedrijfsnaam tonen.
+- [x] **Hardcoded "Admin" / "TAS Demo" in TopBar vervangen** — Moet echte user- en bedrijfsnaam tonen.
 
   
 

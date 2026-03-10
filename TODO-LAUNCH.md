@@ -6,7 +6,7 @@
 
 ## P0 — Showstoppers (zonder dit NIET lanceren)
 
-- [ ] **Supabase RLS (Row Level Security) activeren & testen** — Zonder RLS kan een klant technisch gezien data van andere bedrijven zien. Kritiek beveiligingslek.
+- [x] **Supabase RLS (Row Level Security) activeren & testen** — ✅ Actief op alle 11 tabellen (10 maart 2025). Zie [[Row Level Security]].
 - [ ] **Stripe betalingsintegratie** — Geen betaling = geen SaaS. Subscription, checkout, webhook voor plan-status.
 - [ ] **Settings pagina afmaken** — Bedrijfsgegevens wijzigen, wachtwoord veranderen. Basisverwachting van elke gebruiker.
 - [ ] **Gebruikersbeheer / uitnodigingen** — Een transportbedrijf heeft meerdere planners. Zonder user management is het single-user.

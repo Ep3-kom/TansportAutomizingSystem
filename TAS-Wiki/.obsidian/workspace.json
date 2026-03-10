@@ -182,6 +182,11 @@
   },
   "active": "d7d1a72264fe8229",
   "lastOpenFiles": [
+    "gebruikersnamen.md",
+    "TAS Home.md",
+    "TO do list.md",
+    "Database/Row Level Security.md",
+    "Database/Delivery Database Schema.md",
     "Features/Rij- en Rusttijden.md",
     "Features/Logout.md",
     "Database/Database Schema.md",
@@ -192,9 +197,7 @@
     "Features/Delivery Module/Shopify Koppeling.md",
     "Features/Klantenbeheer.md",
     "Features/Dashboard.md",
-    "TAS Home.md",
     "Features/Settings Pagina.md",
-    "TO do list.md",
     "Taken/Juridisch — AVG & Voorwaarden.md",
     "Taken/Security Checklist.md",
     "Business/Productvisie.md",
@@ -205,9 +208,6 @@
     "Untitled",
     "2026-03-09.md",
     "Architectuur/Deployment.md",
-    "Database/Row Level Security.md",
-    "Features/Chauffeursbeheer.md",
-    "Features/Authenticatie.md",
-    "Roadmap/Fase 2 — CRUD Modules.md"
+    "Features/Chauffeursbeheer.md"
   ]
 }
