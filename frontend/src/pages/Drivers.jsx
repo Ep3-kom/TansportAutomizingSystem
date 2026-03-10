@@ -66,12 +66,12 @@ export default function Drivers() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Chauffeurs</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Chauffeurs</h2>
           <p className="text-sm text-gray-500 mt-1">{drivers.length} chauffeur{drivers.length !== 1 ? 's' : ''} totaal</p>
         </div>
         <button
           onClick={openAdd}
-          className="inline-flex items-center gap-2 bg-primary-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors"
+          className="inline-flex items-center gap-2 bg-primary-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-primary-700 hover:-translate-y-px shadow-sm transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           Chauffeur Toevoegen
@@ -87,14 +87,14 @@ export default function Drivers() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Zoek op naam of telefoon..."
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
           />
         </div>
       )}
 
       {/* Lege staat */}
       {drivers.length === 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 p-12 text-center">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card p-12 text-center">
           <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto">
             <Users className="w-7 h-7 text-primary-400" />
           </div>
@@ -107,23 +107,23 @@ export default function Drivers() {
 
       {/* Chauffeurs lijst */}
       {filtered.length > 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Naam</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Telefoon</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Rijbewijs</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Status</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Acties</th>
+              <tr className="border-b border-gray-100/80">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Naam</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Telefoon</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Rijbewijs</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Status</th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Acties</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {filtered.map((driver) => (
-                <tr key={driver.id} className="hover:bg-gray-50/50 transition-colors">
+                <tr key={driver.id} className="hover:bg-stone-50/50 transition-colors duration-150">
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center">
+                      <div className="w-9 h-9 bg-primary-50 rounded-xl flex items-center justify-center">
                         <span className="text-sm font-semibold text-primary-600">
                           {driver.name.charAt(0).toUpperCase()}
                         </span>
@@ -152,7 +152,7 @@ export default function Drivers() {
                     <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={() => openEdit(driver)}
-                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-lg hover:bg-stone-100 transition-colors duration-150"
                       >
                         <Pencil className="w-4 h-4 text-gray-400" />
                       </button>
@@ -173,7 +173,7 @@ export default function Drivers() {
 
       {/* Geen resultaten bij zoeken */}
       {drivers.length > 0 && filtered.length === 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 p-8 text-center">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card p-8 text-center">
           <p className="text-sm text-gray-500">Geen chauffeurs gevonden voor "{search}"</p>
         </div>
       )}

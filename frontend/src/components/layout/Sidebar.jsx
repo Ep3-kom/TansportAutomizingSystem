@@ -22,31 +22,32 @@ export default function Sidebar() {
   const location = useLocation()
 
   return (
-    <aside className="w-64 bg-sidebar border-r border-gray-200 flex flex-col">
+    <aside className="w-64 bg-sidebar border-r border-gray-200/80 flex flex-col">
       {/* Logo */}
-      <div className="h-16 flex items-center px-6 border-b border-gray-100">
+      <div className="h-16 flex items-center px-6 border-b border-gray-100/80">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-primary-500 rounded-lg flex items-center justify-center">
+          <div className="w-9 h-9 bg-primary-600 rounded-xl flex items-center justify-center shadow-sm">
             <Truck className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-gray-800 tracking-tight">TAS</span>
+          <span className="text-xl font-semibold text-gray-800 tracking-tight">TAS</span>
         </div>
       </div>
 
       {/* Navigatie */}
-      <nav className="flex-1 py-4 px-3 space-y-1">
+      <nav className="flex-1 py-5 px-3 space-y-0.5">
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = location.pathname === to
           return (
             <NavLink
               key={to}
               to={to}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive
-                  ? 'bg-primary-50 text-primary-700'
-                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                  ? 'bg-primary-50/80 text-primary-700 shadow-sm'
+                  : 'text-gray-500 hover:bg-stone-50 hover:text-gray-700'
               }`}
             >
+              {isActive && <div className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-full bg-primary-500" />}
               <Icon className={`w-5 h-5 ${isActive ? 'text-primary-500' : 'text-gray-400'}`} />
               {label}
             </NavLink>
@@ -55,15 +56,16 @@ export default function Sidebar() {
       </nav>
 
       {/* Settings onderaan */}
-      <div className="px-3 pb-4 border-t border-gray-100 pt-3">
+      <div className="px-3 pb-4 border-t border-gray-100/80 pt-3">
         <NavLink
           to="/instellingen"
-          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+          className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
             location.pathname === '/instellingen'
-              ? 'bg-primary-50 text-primary-700'
-              : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+              ? 'bg-primary-50/80 text-primary-700 shadow-sm'
+              : 'text-gray-500 hover:bg-stone-50 hover:text-gray-700'
           }`}
         >
+          {location.pathname === '/instellingen' && <div className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-full bg-primary-500" />}
           <Settings className={`w-5 h-5 ${location.pathname === '/instellingen' ? 'text-primary-500' : 'text-gray-400'}`} />
           Instellingen
         </NavLink>

@@ -50,8 +50,8 @@ export default function DrivingHoursCard({ drivers, getDriverSummary }) {
   const warningCount = driversWithHours.filter(d => d.summary.status === 'warning').length
 
   return (
-    <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
-      <div className="px-5 py-4 border-b border-gray-50">
+    <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
+      <div className="px-5 py-4 border-b border-gray-100/60">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-semibold text-gray-800">Rij- & Rusttijden</h3>

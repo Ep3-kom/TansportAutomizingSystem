@@ -235,7 +235,7 @@ export default function Planning() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Planning</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Planning</h2>
           <p className="text-sm text-gray-500 mt-1">Week {weekNumber} — sleep chauffeurs naar de kalender</p>
         </div>
       </div>
@@ -244,19 +244,19 @@ export default function Planning() {
       <div className="flex items-center gap-3">
         <button
           onClick={prevWeek}
-          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg hover:bg-stone-100 transition-colors duration-150"
         >
           <ChevronLeft className="w-5 h-5 text-gray-600" />
         </button>
         <button
           onClick={goToday}
-          className="px-3 py-1.5 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
+          className="px-3 py-1.5 text-sm font-medium text-primary-600 bg-primary-50 rounded-xl hover:bg-primary-100 transition-colors duration-200"
         >
           Vandaag
         </button>
         <button
           onClick={nextWeek}
-          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg hover:bg-stone-100 transition-colors duration-150"
         >
           <ChevronRight className="w-5 h-5 text-gray-600" />
         </button>

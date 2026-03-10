@@ -113,7 +113,7 @@ export default function DeliveryPlanning() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Planning</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Planning</h2>
           <p className="text-sm text-gray-500 mt-1">Sleep bestellingen naar een dag om ze in te plannen</p>
         </div>
         <div className="flex items-center gap-2">
@@ -135,7 +135,7 @@ export default function DeliveryPlanning() {
       </div>
 
       {/* Navigatie */}
-      <div className="flex items-center justify-between bg-card rounded-xl border border-gray-100 px-5 py-3">
+      <div className="flex items-center justify-between bg-card rounded-xl border border-gray-100/80 shadow-card px-5 py-3">
         <button onClick={() => navigateWeek(-1)} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">
           <ChevronLeft className="w-5 h-5 text-gray-500" />
         </button>
@@ -158,7 +158,7 @@ export default function DeliveryPlanning() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Ongeplande orders (sidebar) */}
         <div className="lg:col-span-1">
-          <div className="bg-card rounded-xl border border-gray-100 overflow-hidden sticky top-6">
+          <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden sticky top-6">
             <div className="px-4 py-3 border-b border-gray-50">
               <h3 className="text-sm font-semibold text-gray-800">Ongepland</h3>
               <p className="text-xs text-gray-400">{unplannedOrders.length} bestelling{unplannedOrders.length !== 1 ? 'en' : ''}</p>
@@ -256,7 +256,7 @@ export default function DeliveryPlanning() {
             </div>
           ) : (
             // Dagweergave
-            <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
                 <div className="flex items-center gap-3">
                   <button onClick={() => {

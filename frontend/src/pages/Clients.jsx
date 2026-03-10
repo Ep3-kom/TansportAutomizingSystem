@@ -62,12 +62,12 @@ export default function Clients() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Klanten</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Klanten</h2>
           <p className="text-sm text-gray-500 mt-1">{clients.length} klant{clients.length !== 1 ? 'en' : ''} totaal</p>
         </div>
         <button
           onClick={openAdd}
-          className="inline-flex items-center gap-2 bg-primary-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors"
+          className="inline-flex items-center gap-2 bg-primary-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-primary-700 hover:-translate-y-px shadow-sm transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           Klant Toevoegen
@@ -77,20 +77,20 @@ export default function Clients() {
       {/* Zoekbalk */}
       {clients.length > 0 && (
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Zoek op naam, contactpersoon, e-mail of telefoon..."
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
           />
         </div>
       )}
 
       {/* Lege staat */}
       {clients.length === 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 p-12 text-center">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card p-12 text-center">
           <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto">
             <Building2 className="w-7 h-7 text-primary-400" />
           </div>
@@ -103,24 +103,24 @@ export default function Clients() {
 
       {/* Klanten lijst */}
       {filtered.length > 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Bedrijf</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Contact</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">E-mail</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Telefoon</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Adres</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Acties</th>
+              <tr className="border-b border-gray-100/80">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Bedrijf</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Contact</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">E-mail</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Telefoon</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Adres</th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3 bg-stone-50/50">Acties</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {filtered.map((client) => (
-                <tr key={client.id} className="hover:bg-gray-50/50 transition-colors">
+                <tr key={client.id} className="hover:bg-stone-50/50 transition-colors duration-150">
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center">
+                      <div className="w-9 h-9 bg-primary-50 rounded-xl flex items-center justify-center">
                         <span className="text-sm font-semibold text-primary-600">
                           {client.name.charAt(0).toUpperCase()}
                         </span>
@@ -159,13 +159,13 @@ export default function Clients() {
                     <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={() => openEdit(client)}
-                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-lg hover:bg-stone-100 transition-colors duration-150"
                       >
                         <Pencil className="w-4 h-4 text-gray-400" />
                       </button>
                       <button
                         onClick={() => setDeleteTarget(client)}
-                        className="p-2 rounded-lg hover:bg-danger-50 transition-colors"
+                        className="p-2 rounded-lg hover:bg-danger-50 transition-colors duration-150"
                       >
                         <Trash2 className="w-4 h-4 text-gray-400 hover:text-danger-500" />
                       </button>
@@ -180,7 +180,7 @@ export default function Clients() {
 
       {/* Geen resultaten bij zoeken */}
       {clients.length > 0 && filtered.length === 0 && (
-        <div className="bg-card rounded-xl border border-gray-100 p-8 text-center">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card p-8 text-center">
           <p className="text-sm text-gray-500">Geen klanten gevonden voor "{search}"</p>
         </div>
       )}

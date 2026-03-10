@@ -100,7 +100,7 @@ export default function Settings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">Instellingen</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">Instellingen</h2>
         <p className="text-sm text-gray-500 mt-1">Beheer je bedrijfsgegevens en accountinstellingen</p>
       </div>
 
@@ -135,7 +135,7 @@ export default function Settings() {
 
       {/* Bedrijfsgegevens tab */}
       {activeTab === 'company' && (
-        <form onSubmit={handleSaveCompany} className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <form onSubmit={handleSaveCompany} className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Bedrijfsgegevens</h3>
             <p className="text-xs text-gray-400 mt-0.5">Gegevens van je transportbedrijf</p>
@@ -152,7 +152,7 @@ export default function Settings() {
                   value={company.name}
                   onChange={e => setCompany(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Transport B.V."
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function Settings() {
                     value={company.kvk_number}
                     onChange={e => setCompany(prev => ({ ...prev, kvk_number: e.target.value }))}
                     placeholder="12345678"
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function Settings() {
                     value={company.btw_number}
                     onChange={e => setCompany(prev => ({ ...prev, btw_number: e.target.value }))}
                     placeholder="NL123456789B01"
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function Settings() {
                     value={company.email}
                     onChange={e => setCompany(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="info@bedrijf.nl"
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function Settings() {
                     value={company.phone}
                     onChange={e => setCompany(prev => ({ ...prev, phone: e.target.value }))}
                     placeholder="0612345678"
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
               </div>
@@ -227,7 +227,7 @@ export default function Settings() {
                   value={company.address}
                   onChange={e => setCompany(prev => ({ ...prev, address: e.target.value }))}
                   placeholder="Straatnaam 123"
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -241,7 +241,7 @@ export default function Settings() {
                   value={company.postcode}
                   onChange={e => setCompany(prev => ({ ...prev, postcode: e.target.value }))}
                   placeholder="1234 AB"
-                  className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
               <div>
@@ -251,7 +251,7 @@ export default function Settings() {
                   value={company.city}
                   onChange={e => setCompany(prev => ({ ...prev, city: e.target.value }))}
                   placeholder="Amsterdam"
-                  className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -262,7 +262,7 @@ export default function Settings() {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200"
             >
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               Opslaan
@@ -273,7 +273,7 @@ export default function Settings() {
 
       {/* Mijn Account tab */}
       {activeTab === 'personal' && (
-        <form onSubmit={handleSavePersonal} className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <form onSubmit={handleSavePersonal} className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Mijn Account</h3>
             <p className="text-xs text-gray-400 mt-0.5">Je persoonlijke accountgegevens</p>
@@ -290,7 +290,7 @@ export default function Settings() {
                   value={personal.full_name}
                   onChange={e => setPersonal(prev => ({ ...prev, full_name: e.target.value }))}
                   placeholder="Jan de Vries"
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function Settings() {
                   type="email"
                   value={personal.email}
                   disabled
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-100 border border-stone-200 rounded-xl text-sm text-gray-400 cursor-not-allowed"
                 />
               </div>
               <p className="text-xs text-gray-400 mt-1">E-mailadres kan niet worden gewijzigd</p>
@@ -317,7 +317,7 @@ export default function Settings() {
                 type="text"
                 value={profile?.role === 'admin' ? 'Beheerder' : profile?.role === 'planner' ? 'Planner' : 'Viewer'}
                 disabled
-                className="w-full px-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                className="w-full px-4 py-2.5 bg-stone-100 border border-stone-200 rounded-xl text-sm text-gray-400 cursor-not-allowed"
               />
             </div>
           </div>
@@ -327,7 +327,7 @@ export default function Settings() {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200"
             >
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               Opslaan

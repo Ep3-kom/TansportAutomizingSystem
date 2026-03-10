@@ -25,14 +25,14 @@ export default function StatCard({ icon: Icon, label, value, subtitle, color = '
   const c = colorMap[color] || colorMap.primary
 
   return (
-    <div className="bg-card rounded-xl border border-gray-100 p-5 hover:shadow-md transition-shadow duration-200">
+    <div className="bg-card rounded-xl border border-gray-100/80 p-5 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm text-gray-500 font-medium">{label}</p>
-          <p className={`text-3xl font-bold mt-1 ${c.value}`}>{value}</p>
-          {subtitle && <p className="text-xs text-gray-400 mt-1">{subtitle}</p>}
+          <p className={`text-3xl font-semibold mt-1 tracking-tight ${c.value}`}>{value}</p>
+          {subtitle && <p className="text-xs text-gray-400 mt-1.5">{subtitle}</p>}
         </div>
-        <div className={`${c.bg} p-2.5 rounded-lg`}>
+        <div className={`${c.bg} p-2.5 rounded-xl`}>
           <Icon className={`w-5 h-5 ${c.icon}`} />
         </div>
       </div>

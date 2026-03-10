@@ -165,7 +165,7 @@ export default function DeliverySettings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">Instellingen</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">Instellingen</h2>
         <p className="text-sm text-gray-500 mt-1">Beheer je koppelingen en bedrijfsgegevens</p>
       </div>
 
@@ -255,7 +255,7 @@ export default function DeliverySettings() {
           )}
 
           {/* Shopify koppeling formulier */}
-          <form onSubmit={handleSaveShopify} className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+          <form onSubmit={handleSaveShopify} className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-50">
               <h3 className="font-semibold text-gray-800">Shopify API Koppeling</h3>
               <p className="text-xs text-gray-400 mt-0.5">
@@ -274,7 +274,7 @@ export default function DeliverySettings() {
                     onChange={e => setShopify(p => ({ ...p, shop_domain: e.target.value }))}
                     placeholder="mijn-winkel.myshopify.com"
                     required
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <p className="text-xs text-gray-400 mt-1">Je kunt dit vinden in je Shopify admin URL</p>
@@ -290,7 +290,7 @@ export default function DeliverySettings() {
                     onChange={e => setShopify(p => ({ ...p, access_token: e.target.value }))}
                     placeholder="shpat_xxxxxxxxxxxxx"
                     required
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <p className="text-xs text-gray-400 mt-1">
@@ -312,7 +312,7 @@ export default function DeliverySettings() {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200"
               >
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 {isConnected ? 'Bijwerken' : 'Koppelen'}
@@ -324,7 +324,7 @@ export default function DeliverySettings() {
 
       {/* Bedrijfsgegevens tab */}
       {activeTab === 'company' && (
-        <form onSubmit={handleSaveCompany} className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <form onSubmit={handleSaveCompany} className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Bedrijfsgegevens</h3>
             <p className="text-xs text-gray-400 mt-0.5">Gegevens van je bedrijf</p>
@@ -339,7 +339,7 @@ export default function DeliverySettings() {
                   type="text"
                   value={company.name}
                   onChange={e => setCompany(p => ({ ...p, name: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -349,14 +349,14 @@ export default function DeliverySettings() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">KVK-nummer</label>
                 <div className="relative">
                   <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input type="text" value={company.kvk_number} onChange={e => setCompany(p => ({ ...p, kvk_number: e.target.value }))} placeholder="12345678" className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                  <input type="text" value={company.kvk_number} onChange={e => setCompany(p => ({ ...p, kvk_number: e.target.value }))} placeholder="12345678" className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">BTW-nummer</label>
                 <div className="relative">
                   <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input type="text" value={company.btw_number} onChange={e => setCompany(p => ({ ...p, btw_number: e.target.value }))} placeholder="NL123456789B01" className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                  <input type="text" value={company.btw_number} onChange={e => setCompany(p => ({ ...p, btw_number: e.target.value }))} placeholder="NL123456789B01" className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
                 </div>
               </div>
             </div>
@@ -366,14 +366,14 @@ export default function DeliverySettings() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">E-mailadres</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input type="email" value={company.email} onChange={e => setCompany(p => ({ ...p, email: e.target.value }))} placeholder="info@bedrijf.nl" className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                  <input type="email" value={company.email} onChange={e => setCompany(p => ({ ...p, email: e.target.value }))} placeholder="info@bedrijf.nl" className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Telefoonnummer</label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input type="tel" value={company.phone} onChange={e => setCompany(p => ({ ...p, phone: e.target.value }))} placeholder="0612345678" className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                  <input type="tel" value={company.phone} onChange={e => setCompany(p => ({ ...p, phone: e.target.value }))} placeholder="0612345678" className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
                 </div>
               </div>
             </div>
@@ -382,24 +382,24 @@ export default function DeliverySettings() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Adres</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="text" value={company.address} onChange={e => setCompany(p => ({ ...p, address: e.target.value }))} placeholder="Straatnaam 123" className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                <input type="text" value={company.address} onChange={e => setCompany(p => ({ ...p, address: e.target.value }))} placeholder="Straatnaam 123" className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Postcode</label>
-                <input type="text" value={company.postcode} onChange={e => setCompany(p => ({ ...p, postcode: e.target.value }))} placeholder="1234 AB" className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                <input type="text" value={company.postcode} onChange={e => setCompany(p => ({ ...p, postcode: e.target.value }))} placeholder="1234 AB" className="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Plaats</label>
-                <input type="text" value={company.city} onChange={e => setCompany(p => ({ ...p, city: e.target.value }))} placeholder="Amsterdam" className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                <input type="text" value={company.city} onChange={e => setCompany(p => ({ ...p, city: e.target.value }))} placeholder="Amsterdam" className="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
               </div>
             </div>
           </div>
 
           <div className="px-6 py-4 border-t border-gray-50 flex justify-end">
-            <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors">
+            <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200">
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               Opslaan
             </button>
@@ -409,7 +409,7 @@ export default function DeliverySettings() {
 
       {/* Mijn Account tab */}
       {activeTab === 'personal' && (
-        <form onSubmit={handleSavePersonal} className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <form onSubmit={handleSavePersonal} className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Mijn Account</h3>
             <p className="text-xs text-gray-400 mt-0.5">Je persoonlijke accountgegevens</p>
@@ -420,7 +420,7 @@ export default function DeliverySettings() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Volledige naam</label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="text" value={personal.full_name} onChange={e => setPersonal(p => ({ ...p, full_name: e.target.value }))} className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all" />
+                <input type="text" value={personal.full_name} onChange={e => setPersonal(p => ({ ...p, full_name: e.target.value }))} className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200" />
               </div>
             </div>
 
@@ -428,14 +428,14 @@ export default function DeliverySettings() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">E-mailadres</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="email" value={personal.email} disabled className="w-full pl-10 pr-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm text-gray-400 cursor-not-allowed" />
+                <input type="email" value={personal.email} disabled className="w-full pl-10 pr-4 py-2.5 bg-stone-100 border border-stone-200 rounded-xl text-sm text-gray-400 cursor-not-allowed" />
               </div>
               <p className="text-xs text-gray-400 mt-1">E-mailadres kan niet worden gewijzigd</p>
             </div>
           </div>
 
           <div className="px-6 py-4 border-t border-gray-50 flex justify-end">
-            <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors">
+            <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200">
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               Opslaan
             </button>

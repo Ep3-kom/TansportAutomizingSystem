@@ -44,17 +44,17 @@ export default function TopBar() {
   }, [])
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+    <header className="h-16 bg-white border-b border-gray-200/80 flex items-center justify-between px-6">
       <h1 className="text-lg font-semibold text-gray-800">{title}</h1>
 
       <div className="flex items-center gap-4">
         {/* Zoekbalk */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
             placeholder="Zoeken..."
-            className="pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 w-64 transition-all"
+            className="pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 w-64 transition-all duration-200"
           />
         </div>
 
@@ -62,11 +62,11 @@ export default function TopBar() {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative p-2 rounded-lg hover:bg-gray-50 transition-colors"
+            className="relative p-2 rounded-xl hover:bg-stone-50 transition-colors duration-200"
           >
             <Bell className="w-5 h-5 text-gray-500" />
             {unreadCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-danger-500 rounded-full flex items-center justify-center px-1">
+              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-danger-500 rounded-full flex items-center justify-center px-1 shadow-sm">
                 <span className="text-[10px] font-bold text-white leading-none">{unreadCount > 9 ? '9+' : unreadCount}</span>
               </span>
             )}
@@ -74,7 +74,7 @@ export default function TopBar() {
 
           {/* Notificatie dropdown */}
           {showNotifications && (
-            <div className="absolute right-0 top-full mt-2 w-96 bg-white rounded-xl border border-gray-200 shadow-lg z-50 overflow-hidden">
+            <div className="absolute right-0 top-full mt-2 w-96 bg-white rounded-xl border border-gray-200/80 shadow-card-lg z-50 overflow-hidden">
               <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
                 <h3 className="font-semibold text-gray-800 text-sm">Meldingen</h3>
                 {unreadCount > 0 && (
@@ -93,7 +93,7 @@ export default function TopBar() {
                     const style = severityStyles[notification.severity] || severityStyles.info
                     const Icon = style.icon
                     return (
-                      <div key={notification.id} className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
+                      <div key={notification.id} className="flex items-start gap-3 px-4 py-3 hover:bg-stone-50 transition-colors duration-150 border-b border-gray-50 last:border-0">
                         <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${style.bg}`}>
                           <Icon className={`w-4 h-4 ${style.iconColor}`} />
                         </div>
@@ -111,8 +111,8 @@ export default function TopBar() {
         </div>
 
         {/* Gebruiker avatar */}
-        <div className="flex items-center gap-3 pl-3 border-l border-gray-200">
-          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+        <div className="flex items-center gap-3 pl-3 border-l border-gray-200/60">
+          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center ring-2 ring-primary-50">
             <span className="text-sm font-semibold text-primary-600">{userInitial}</span>
           </div>
           <div className="hidden sm:block">
@@ -121,7 +121,7 @@ export default function TopBar() {
           </div>
           <button
             onClick={signOut}
-            className="p-2 rounded-lg text-gray-400 hover:text-danger-500 hover:bg-danger-50 transition-colors"
+            className="p-2 rounded-xl text-gray-400 hover:text-danger-500 hover:bg-danger-50 transition-colors duration-200"
             title="Uitloggen"
           >
             <LogOut className="w-4 h-4" />

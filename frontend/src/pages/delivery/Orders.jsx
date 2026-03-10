@@ -102,12 +102,12 @@ export default function Orders() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Bestellingen</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Bestellingen</h2>
           <p className="text-sm text-gray-500 mt-1">{orders.length} bestelling{orders.length !== 1 ? 'en' : ''} totaal</p>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           Bestelling toevoegen
@@ -123,7 +123,7 @@ export default function Orders() {
             placeholder="Zoek op naam, postcode, stad..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+            className="w-full pl-9 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
           />
         </div>
         <div className="flex gap-1 bg-gray-100 p-1 rounded-lg overflow-x-auto">
@@ -154,7 +154,7 @@ export default function Orders() {
       </div>
 
       {/* Orders lijst */}
-      <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+      <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
         {filteredOrders.length === 0 ? (
           <div className="px-5 py-12 text-center">
             <Package className="w-10 h-10 text-gray-300 mx-auto" />
@@ -165,7 +165,7 @@ export default function Orders() {
         ) : (
           <div className="divide-y divide-gray-50">
             {filteredOrders.map(order => (
-              <div key={order.id} className="flex items-center justify-between px-5 py-4 hover:bg-gray-50/50 transition-colors">
+              <div key={order.id} className="flex items-center justify-between px-5 py-4 hover:bg-stone-50/50 transition-colors duration-150">
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Package className="w-4 h-4 text-gray-400" />
@@ -245,9 +245,9 @@ export default function Orders() {
 
       {/* Detail Modal */}
       {showDetailModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => setShowDetailModal(null)}>
-          <div className="bg-white rounded-xl w-full max-w-lg shadow-xl" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowDetailModal(null)}>
+          <div className="bg-white rounded-2xl w-full max-w-lg shadow-card-lg border border-gray-100/80" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100/80">
               <h3 className="font-semibold text-gray-800">Bestelling {showDetailModal.order_number}</h3>
               <button onClick={() => setShowDetailModal(null)} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
@@ -319,9 +319,9 @@ export default function Orders() {
 
       {/* Toevoegen Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => setShowAddModal(false)}>
-          <div className="bg-white rounded-xl w-full max-w-lg shadow-xl" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowAddModal(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-lg shadow-card-lg border border-gray-100/80" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100/80">
               <h3 className="font-semibold text-gray-800">Bestelling toevoegen</h3>
               <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
@@ -336,7 +336,7 @@ export default function Orders() {
                     value={newOrder.customer_name}
                     onChange={e => setNewOrder(p => ({ ...p, customer_name: e.target.value }))}
                     required
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -345,7 +345,7 @@ export default function Orders() {
                     type="tel"
                     value={newOrder.customer_phone}
                     onChange={e => setNewOrder(p => ({ ...p, customer_phone: e.target.value }))}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -354,7 +354,7 @@ export default function Orders() {
                     type="email"
                     value={newOrder.customer_email}
                     onChange={e => setNewOrder(p => ({ ...p, customer_email: e.target.value }))}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div className="col-span-2">
@@ -365,7 +365,7 @@ export default function Orders() {
                     onChange={e => setNewOrder(p => ({ ...p, address: e.target.value }))}
                     required
                     placeholder="Straatnaam 123"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -376,7 +376,7 @@ export default function Orders() {
                     onChange={e => setNewOrder(p => ({ ...p, postcode: e.target.value }))}
                     required
                     placeholder="1234 AB"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -387,7 +387,7 @@ export default function Orders() {
                     onChange={e => setNewOrder(p => ({ ...p, city: e.target.value }))}
                     required
                     placeholder="Amsterdam"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div className="col-span-2">
@@ -397,7 +397,7 @@ export default function Orders() {
                     value={newOrder.products}
                     onChange={e => setNewOrder(p => ({ ...p, products: e.target.value }))}
                     placeholder="Boxspring 180x200, Matras (komma-gescheiden)"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                   />
                 </div>
                 <div className="col-span-2">
@@ -407,7 +407,7 @@ export default function Orders() {
                     onChange={e => setNewOrder(p => ({ ...p, notes: e.target.value }))}
                     rows={2}
                     placeholder="Bijv. 2e verdieping, geen lift"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 resize-none"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200 resize-none"
                   />
                 </div>
               </div>
@@ -422,7 +422,7 @@ export default function Orders() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2 bg-primary-500 text-white text-sm font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors"
+                  className="px-5 py-2 bg-primary-600 text-white text-sm font-medium rounded-xl hover:bg-primary-700 hover:-translate-y-px shadow-sm disabled:opacity-50 transition-all duration-200"
                 >
                   {saving ? 'Opslaan...' : 'Opslaan'}
                 </button>

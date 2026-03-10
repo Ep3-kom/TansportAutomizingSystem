@@ -51,15 +51,15 @@ export default function Register() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-primary-500 rounded-2xl flex items-center justify-center mx-auto">
+          <div className="w-14 h-14 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
             <Truck className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 mt-4">Account aanmaken</h1>
+          <h1 className="text-2xl font-semibold text-gray-800 mt-4">Account aanmaken</h1>
           <p className="text-sm text-gray-500 mt-1">Start met het plannen van je wagenpark</p>
         </div>
 
         {/* Formulier */}
-        <div className="bg-card rounded-xl border border-gray-100 p-6 shadow-sm">
+        <div className="bg-card rounded-2xl border border-gray-100/80 p-6 shadow-card">
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
               <div className="bg-danger-50 text-danger-500 text-sm px-4 py-3 rounded-lg">
@@ -78,7 +78,7 @@ export default function Register() {
                   onChange={handleChange}
                   placeholder="Jouw Transport B.V."
                   required
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function Register() {
                   onChange={handleChange}
                   placeholder="Jan de Vries"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function Register() {
                   onChange={handleChange}
                   placeholder="naam@bedrijf.nl"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Register() {
                   onChange={handleChange}
                   placeholder="Minimaal 6 tekens"
                   required
-                  className="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all"
+                  className="w-full pl-10 pr-10 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-sm text-gray-700 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300 transition-all duration-200"
                 />
                 <button
                   type="button"
@@ -141,7 +141,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary-500 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-primary-600 text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-700 hover:-translate-y-px shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
               {loading ? 'Account aanmaken...' : 'Registreren'}
             </button>

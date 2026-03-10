@@ -69,7 +69,7 @@ export default function DeliveryDashboard() {
     <div className="space-y-6">
       {/* Welkom */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">{getGreeting()} 👋</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">{getGreeting()} 👋</h2>
         <p className="text-gray-500 text-sm mt-1">
           {profile?.companies?.name || 'Je bedrijf'} — overzicht van je bezorgingen
         </p>
@@ -84,7 +84,7 @@ export default function DeliveryDashboard() {
       </div>
 
       {/* Week overzicht mini */}
-      <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+      <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
           <h3 className="font-semibold text-gray-800">Komende 7 dagen</h3>
           <button
@@ -120,7 +120,7 @@ export default function DeliveryDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Bezorgingen vandaag */}
-        <div className="lg:col-span-2 bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <div className="lg:col-span-2 bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Bezorgingen Vandaag</h3>
             <span className="text-xs text-gray-400">{todayOrders.length} stop{todayOrders.length !== 1 ? 's' : ''}</span>
@@ -165,7 +165,7 @@ export default function DeliveryDashboard() {
         </div>
 
         {/* Nieuwe bestellingen */}
-        <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
             <h3 className="font-semibold text-gray-800">Nieuwe Bestellingen</h3>
             <button

@@ -93,7 +93,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       {/* Welkom */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">{getGreeting()} 👋</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">{getGreeting()} 👋</h2>
         <p className="text-gray-500 text-sm mt-1">Hier is het overzicht van vandaag</p>
       </div>
 
@@ -109,12 +109,12 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Inplanningen vandaag */}
-        <div className="lg:col-span-2 bg-card rounded-xl border border-gray-100 overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
+        <div className="lg:col-span-2 bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100/60">
             <h3 className="font-semibold text-gray-800">Inplanningen Vandaag</h3>
             <button
               onClick={() => navigate('/planning')}
-              className="text-sm text-primary-500 hover:text-primary-700 font-medium flex items-center gap-1 transition-colors"
+              className="text-sm text-primary-500 hover:text-primary-700 font-medium flex items-center gap-1 transition-colors duration-200"
             >
               Bekijk planning <ArrowRight className="w-4 h-4" />
             </button>
@@ -128,9 +128,9 @@ export default function Dashboard() {
           ) : (
             <div className="divide-y divide-gray-50">
               {todaySchedules.map((schedule) => (
-                <div key={schedule.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-gray-50/50 transition-colors">
+                <div key={schedule.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-stone-50/50 transition-colors duration-150">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-primary-50 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-primary-50 rounded-xl flex items-center justify-center">
                       <Users className="w-4 h-4 text-primary-400" />
                     </div>
                     <div>
@@ -159,8 +159,8 @@ export default function Dashboard() {
         </div>
 
         {/* APK Waarschuwingen */}
-        <div className="bg-card rounded-xl border border-gray-100 overflow-hidden">
-          <div className="px-5 py-4 border-b border-gray-50">
+        <div className="bg-card rounded-xl border border-gray-100/80 shadow-card overflow-hidden">
+          <div className="px-5 py-4 border-b border-gray-100/60">
             <h3 className="font-semibold text-gray-800">APK Waarschuwingen</h3>
             <p className="text-xs text-gray-400 mt-0.5">Verloopt binnen 60 dagen</p>
           </div>
@@ -173,9 +173,9 @@ export default function Dashboard() {
           ) : (
             <div className="divide-y divide-gray-50">
               {apkWarnings.map((truck) => (
-                <div key={truck.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-gray-50/50 transition-colors">
+                <div key={truck.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-stone-50/50 transition-colors duration-150">
                   <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${truck.daysLeft <= 14 ? 'bg-danger-50' : 'bg-warn-50'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${truck.daysLeft <= 14 ? 'bg-danger-50' : 'bg-warn-50'}`}>
                       <AlertTriangle className={`w-4 h-4 ${truck.daysLeft <= 14 ? 'text-danger-400' : 'text-warn-400'}`} />
                     </div>
                     <div>
