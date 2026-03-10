@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Building2, User, Save, Loader2, CheckCircle, MapPin, Mail, Phone, Hash } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Building2, User, Save, Loader2, CheckCircle, MapPin, Mail, Phone, Hash, Upload, Trash2, ImageIcon } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth.jsx'
 import { supabase } from '../lib/supabase'
 
@@ -8,6 +8,9 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState('company')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [logoUrl, setLogoUrl] = useState(null)
+  const [uploadingLogo, setUploadingLogo] = useState(false)
+  const fileInputRef = useRef(null)
 
   // Bedrijfsgegevens
   const [company, setCompany] = useState({
@@ -40,6 +43,9 @@ export default function Settings() {
         city: profile.companies.city || '',
         postcode: profile.companies.postcode || '',
       })
+      if (profile.companies.logo_url) {
+        setLogoUrl(profile.companies.logo_url)
+      }
     }
     if (profile) {
       setPersonal({
@@ -48,6 +54,71 @@ export default function Settings() {
       })
     }
   }, [profile, user])
+
+  async function handleLogoUpload(e) {
+    const file = e.target.files?.[0]
+    if (!file || !profile?.company_id) return
+
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp']
+    if (!allowedTypes.includes(file.type)) return
+    if (file.size > 2 * 1024 * 1024) return // max 2MB
+
+    setUploadingLogo(true)
+    const ext = file.name.split('.').pop()
+    const filePath = `${profile.company_id}/logo.${ext}`
+
+    // Verwijder eventueel bestaand logo
+    await supabase.storage.from('company-logos').remove([filePath])
+
+    const { error: uploadError } = await supabase.storage
+      .from('company-logos')
+      .upload(filePath, file, { upsert: true })
+
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage
+        .from('company-logos')
+        .getPublicUrl(filePath)
+
+      const url = `${publicUrl}?t=${Date.now()}`
+      setLogoUrl(url)
+
+      await supabase
+        .from('companies')
+        .update({ logo_url: url })
+        .eq('id', profile.company_id)
+
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    }
+    setUploadingLogo(false)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
+
+  async function handleLogoRemove() {
+    if (!profile?.company_id) return
+    setUploadingLogo(true)
+
+    // Verwijder alle bestanden in de company folder
+    const { data: files } = await supabase.storage
+      .from('company-logos')
+      .list(profile.company_id)
+
+    if (files?.length) {
+      await supabase.storage
+        .from('company-logos')
+        .remove(files.map(f => `${profile.company_id}/${f.name}`))
+    }
+
+    await supabase
+      .from('companies')
+      .update({ logo_url: null })
+      .eq('id', profile.company_id)
+
+    setLogoUrl(null)
+    setUploadingLogo(false)
+    setSaved(true)
+    setTimeout(() => setSaved(false), 3000)
+  }
 
   async function handleSaveCompany(e) {
     e.preventDefault()
@@ -142,6 +213,52 @@ export default function Settings() {
           </div>
 
           <div className="p-6 space-y-5">
+            {/* Bedrijfslogo */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">Bedrijfslogo</label>
+              <div className="flex items-center gap-5">
+                <div className="w-20 h-20 rounded-xl border-2 border-dashed border-stone-300 bg-stone-50 flex items-center justify-center overflow-hidden">
+                  {logoUrl ? (
+                    <img src={logoUrl} alt="Bedrijfslogo" className="w-full h-full object-contain p-1" />
+                  ) : (
+                    <ImageIcon className="w-8 h-8 text-stone-300" />
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={uploadingLogo}
+                      className="flex items-center gap-2 px-4 py-2 bg-stone-50 border border-stone-200 text-sm font-medium text-gray-700 rounded-xl hover:bg-stone-100 disabled:opacity-50 transition-all duration-200"
+                    >
+                      {uploadingLogo ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                      {logoUrl ? 'Wijzigen' : 'Uploaden'}
+                    </button>
+                    {logoUrl && (
+                      <button
+                        type="button"
+                        onClick={handleLogoRemove}
+                        disabled={uploadingLogo}
+                        className="flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 text-sm font-medium text-red-600 rounded-xl hover:bg-red-100 disabled:opacity-50 transition-all duration-200"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                        Verwijderen
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-400">PNG, JPG, SVG of WebP. Max 2MB.</p>
+                </div>
+              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/svg+xml,image/webp"
+                onChange={handleLogoUpload}
+                className="hidden"
+              />
+            </div>
+
             {/* Bedrijfsnaam */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Bedrijfsnaam</label>
